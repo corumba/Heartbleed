@@ -47,7 +47,7 @@ func main() {
 
 	out, err := bleed.Heartbleed(&tgt, []byte("heartbleed.filippo.io"))
 	if err == bleed.Safe {
-		log.Printf("%v - SAFE2", tgt.HostIp)
+		log.Printf("%v - SAFE8", tgt.HostIp)
 		os.Exit(0)
 	} else if err != nil {
 		log.Printf("%v - ERROR2: %v", tgt.HostIp, err)
