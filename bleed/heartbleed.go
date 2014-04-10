@@ -109,6 +109,7 @@ func Heartbleed(tgt *Target, payload []byte) (out []byte, err error) {
 		conn.Close()
 		if status {
 			out = buf.Bytes()
+			spew.Printf("out: %v -- out.Bites(): %v", out, out.Bytes())
 			return out, nil // VULNERABLE
 		} else if err != nil {
 			return
