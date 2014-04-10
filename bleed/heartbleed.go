@@ -50,6 +50,7 @@ func buildEvilMessage(payload []byte) []byte {
 
 func heartbleedCheck(conn *tls.Conn, buf *bytes.Buffer, vuln chan bool) func([]byte) {
 	return func(data []byte) {
+	  	spew.Printf("buf: %v -- data: %+v", buf, data)
 		spew.Fdump(buf, data)
 		if bytes.Index(data, padding) == -1 {
 			vuln <- false
