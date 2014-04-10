@@ -47,14 +47,14 @@ func main() {
 
 	out, err := bleed.Heartbleed(&tgt, []byte("heartbleed.filippo.io"))
 	if err == bleed.Safe {
-		log.Printf("%v - SAFE", tgt.HostIp)
+		log.Printf("%v - SAFE2", tgt.HostIp)
 		os.Exit(0)
 	} else if err != nil {
-		log.Printf("%v - ERROR: %v", tgt.HostIp, err)
+		log.Printf("%v - ERROR2: %v", tgt.HostIp, err)
 		os.Exit(2)
 	} else {
 		log.Printf("%v\n", string(out))
-		log.Printf("%v - VULNERABLE", tgt.HostIp)
+		log.Printf("%v - VULNERABLE2", tgt.HostIp)
 		os.Exit(1)
 	}
 }
