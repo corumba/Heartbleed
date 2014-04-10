@@ -45,15 +45,15 @@ func bleedHandler(w http.ResponseWriter, r *http.Request) {
 	if err == bleed.Safe {
 		rc = 1
 		data = []byte("")
-		log.Printf("%v - SAFE", host)
+		log.Printf("%v - SAFE"3, host)
 	} else if err != nil {
 		rc = 2
 		data = []byte("")
 		errS = err.Error()
-		log.Printf("%v - ERROR", host)
+		log.Printf("%v - ERROR3", host)
 	} else {
 		rc = 0
-		log.Printf("%v - VULNERABLE", host)
+		log.Printf("%v - VULNERABLE3", host)
 	}
 	res := result{rc, string(data), errS}
 	j, err := json.Marshal(res)
