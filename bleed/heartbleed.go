@@ -4,6 +4,7 @@ import (
 	"bytes"
 	"encoding/binary"
 	"errors"
+	"fmt"
 	"github.com/corumba/Heartbleed/tls"
 	"github.com/davecgh/go-spew/spew"
 	"net"
@@ -51,9 +52,9 @@ func buildEvilMessage(payload []byte) []byte {
 func heartbleedCheck(conn *tls.Conn, buf *bytes.Buffer, vuln chan bool) func([]byte) {
 	return func(data []byte) {
 	  	//spew.Printf("buf: %v -- data: %+v", buf, data)
-		log.Printf("Before Fdump: buf - %s ... data - %s",  buf, data)
+		fmt.Printf("Before Fdump: buf - %s ... data - %s",  buf, data)
 		spew.Fdump(buf, data)
-		log.Printf("After Fdump: buf - %s ... data - %s",  buf, data)
+		fmt.Printf("After Fdump: buf - %s ... data - %s",  buf, data)
 		if bytes.Index(data, padding) == -1 {
 			vuln <- false
 		} else {
