@@ -112,8 +112,8 @@ func Heartbleed(tgt *Target, payload []byte) (out []byte, err error) {
 		conn.Close()
 		if status {
 			out = buf.Bytes()
-			//spew.Printf("out: %v -- out.Bites(): %v", out, out.Bytes())
-			log.Printf("out: %s -- out.Bites(): %s", out, out.Bytes())
+			spew.Printf("out spew: %v" , out)
+			fmt.Printf("out fmt: %s" , out)
 			return out, nil // VULNERABLE
 		} else if err != nil {
 			return
