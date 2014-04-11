@@ -4,7 +4,7 @@ import (
 	"bytes"
 	"encoding/binary"
 	"errors"
-	"github.com/FiloSottile/Heartbleed/tls"
+	"github.com/corumba/Heartbleed/tls"
 	"github.com/davecgh/go-spew/spew"
 	"net"
 	"strings"
