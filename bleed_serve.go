@@ -3,7 +3,7 @@
 package main
 
 import (
-	bleed "github.com/FiloSottile/Heartbleed/bleed"
+	bleed "github.com/corumba/Heartbleed/bleed"
 	"encoding/json"
 	"fmt"
 	"log"
