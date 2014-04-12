@@ -65,7 +65,7 @@ func heartbleedCheck(conn *tls.Conn, buf *bytes.Buffer, vuln chan bool) func([]b
 	}
 }
 
-func Heartbleed(tgt *Target, payload []byte) (out []byte, err error) {
+func Heartbleed(tgt *Target, payload []byte) (err error) {
 	host := tgt.HostIp
 
 	if strings.Index(host, ":") == -1 {
@@ -113,10 +113,10 @@ func Heartbleed(tgt *Target, payload []byte) (out []byte, err error) {
 	case status := <-vuln:
 		conn.Close()
 		if status {
-			out = buf.Bytes()
+			//out = buf.Bytes()
 			//spew.Printf("out spew: %v" , out)
 			//fmt.Printf("out fmt: %s" , out)
-			return out, nil // VULNERABLE
+			return nil // VULNERABLE
 		} else if err != nil {
 			return
 		} else {
